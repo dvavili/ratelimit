@@ -114,6 +114,7 @@ func (this *service) shouldRateLimitWorker(
 		limitsToCheck[i] = snappedConfig.GetLimit(ctx, request.Domain, descriptor)
 	}
 
+	logger.Debugf("Calling DoLimit for req: %+v, limitsToCheck: %+v", request, limitsToCheck)
 	responseDescriptorStatuses := this.cache.DoLimit(ctx, request, limitsToCheck)
 	assert.Assert(len(limitsToCheck) == len(responseDescriptorStatuses))
 

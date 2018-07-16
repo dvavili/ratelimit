@@ -107,6 +107,21 @@ func newServer(name string, opts ...settings.Option) *server {
 		opt(&s)
 	}
 
+    switch s.LogLevel {
+    case "DEBUG", "debug":
+        logger.SetLevel(logger.DebugLevel)
+    case "WARN", "warn":
+        logger.SetLevel(logger.WarnLevel)
+    case "INFO", "info":
+        logger.SetLevel(logger.InfoLevel)
+    case "ERROR", "error":
+        logger.SetLevel(logger.ErrorLevel)
+    case "FATAL", "fatal":
+        logger.SetLevel(logger.FatalLevel)
+    case "PANIC", "panic":
+        logger.SetLevel(logger.PanicLevel)
+    }
+
 	ret := new(server)
 	ret.grpcServer = grpc.NewServer(s.GrpcUnaryInterceptor)
 
