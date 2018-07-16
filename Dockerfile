@@ -1,3 +1,3 @@
-FROM alpine:3.6
+FROM gcr.io/distroless/base
 ADD bin/ratelimit* /bin/
 CMD ["/bin/ratelimit"]
